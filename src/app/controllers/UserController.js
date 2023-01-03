@@ -6,7 +6,7 @@ class UserController {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       email: Yup.string().email().required(),
-      password: Yup.string().required().min(3),
+      password: Yup.string().required().min(5),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -34,9 +34,9 @@ class UserController {
     const schema = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string().email(),
-      oldPassword: Yup.string().min(3),
+      oldPassword: Yup.string().min(5),
       password: Yup.string()
-        .min(3)
+        .min(5)
         .when('oldPassword', (oldPassword, field) =>
           oldPassword ? field.required() : field
         ),
